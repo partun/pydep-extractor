@@ -1,0 +1,57 @@
+[build-system]
+requires = [ "setuptools>=61.0",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydep-extractor"
+version = "0.0.1"
+description = "testing"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "toml==0.10.2",
+    "pydantic==1.8.2",
+    "tqdm==4.62.3",
+]
+[[project.authors]]
+name = "partun"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/partun/pydep-extractor/issues"
+Homepage = "https://github.com/partun/pydep-extractor"
+
+[project.optional-dependencies]
+dev = [ "pyproject-flake8==5.0.4", "black[d]==22.10.0", "mypy==0.982", "pytest-cov==4.0.0", "pre-commit==2.20.0",]
+foo = [ "pytest==6.2.5",]
+
+[tool.mypy]
+files = "src/**/*.py"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
+
+[tool.black]
+line-length = 100
+target-version = [ "py38",]
+
+[tool.flake8]
+max-line-length = 100
+max-complexity = 10
+extend-exclude = [ "tests", "venv",]
+
+[tool.pytest.ini_options]
+testpaths = [ "tests",]
+addopts = [ "--cov=python_template", "--cov-report=html:pytest", "--cov-report=term-missing",]
